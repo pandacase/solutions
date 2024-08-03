@@ -9,3 +9,11 @@ all:
 %:
 	@g++ Scripts/$*.cc -o Debug/$*.out
 	@./Debug/$*.out
+
+
+# Git push 目标
+.PHONY: push
+push:
+	git add .
+	git commit -m "complete problem $(p)"
+	git push -u origin main

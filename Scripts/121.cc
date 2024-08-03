@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <numeric>
+#include <limits>
 
 //! @brief 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示
 //! 一支给定股票第 i 天的价格。
@@ -24,7 +24,16 @@
 class Solution {
 public:
   int maxProfit(std::vector<int>& prices) {
-    
+    int size = prices.size();
+    int minVal = std::numeric_limits<int>::max();
+    int maxAns = 0;
+
+    for (int i = 0; i < size; ++i) {
+      minVal = std::min(minVal, prices[i]);
+      maxAns = std::max(maxAns, prices[i] - minVal);
+    }
+
+    return maxAns;
   }
 };
 

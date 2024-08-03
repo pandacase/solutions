@@ -8,12 +8,18 @@ all:
 # 目标为任意整数
 %:
 	@g++ Scripts/$*.cc -o Debug/$*.out
+	@echo "[+] g++ Scripts/$*.cc -o Debug/$*.out"
+	@echo "[+] ./Debug/$*.out"
+	@echo "[+] Get outputs:"
 	@./Debug/$*.out
 
 
 # Git push 目标
 .PHONY: push
 push:
-	git add .
-	git commit -m "$(m)"
-	git push -u origin main
+	@git add .
+	@echo "[+] git add ."
+	@git commit -m "$(m)"
+	@echo "[+] git commit -m '$(m)'"
+	@git push -u origin main
+	@echo "[+] git push -u origin main"

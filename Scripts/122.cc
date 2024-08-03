@@ -1,11 +1,10 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <limits>
 
 //! @brief 给你一个整数数组 prices ，其中 prices[i] 表示
 //! 某支股票第 i 天的价格。
-//! 在每一天，你可以决定是否购买和/或出售股票。
+//! 在每一天，你可以决定是否购买 和/或 出售股票。
 //! 你在任何时候最多只能持有一股股票。
 //! 你也可以先购买，然后在同一天出售。
 //! 返回你能获得的最大利润 。
@@ -24,20 +23,16 @@
 //! 最大总利润为 4 + 3 = 7 。
 //! 
 //! @note 
-//! 
+//! 每天都可以在出售之后重新买入，故只需要把所有增量情况算入即可
 class Solution {
 public:
   int maxProfit(std::vector<int>& prices) {
     int size = prices.size();
-    int minVal = std::numeric_limits<int>::max();
-    int maxAns = 0;
-
-    for (int i = 0; i < size; ++i) {
-      minVal = std::min(minVal, prices[i]);
-      maxAns = std::max(maxAns, prices[i] - minVal);
+    int profit = 0;
+    for (int i = 1; i < size; ++i) {
+      profit += std::max(0, prices[i] - prices[i - 1]);
     }
-
-    return maxAns;
+    return profit;
   }
 };
 

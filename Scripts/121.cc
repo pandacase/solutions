@@ -20,7 +20,9 @@
 //! output:        0
 //! 
 //! @note 
-//! 
+//! 遍历每天的时候考虑：如果是今天买入，则在今天往后最大利润那天卖出即可。
+//! 此时 max value 的维护是从后往前的，也可以做出来。
+//! 或者反向考虑，从前往后遍历，每天考虑若在今天卖出，则应在今天往前哪天买入
 class Solution {
 public:
   int maxProfit(std::vector<int>& prices) {

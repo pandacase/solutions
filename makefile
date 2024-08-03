@@ -15,5 +15,5 @@ all:
 .PHONY: push
 push:
 	git add .
-	git commit -m "$(c)"
+	git commit -m "$(m)"
 	git push -u origin main

@@ -23,3 +23,9 @@ push:
 	@echo "[+] git commit -m '$(m)'"
 	@git push -u origin main
 	@echo "[+] git push -u origin main"
+
+
+# clean 目标
+.PHONY: clean
+clean:
+	rm -rf ./Debug/*.out

@@ -26,29 +26,42 @@
 //! output: 2
 //! 
 //! @note
-//! 
+//! 线性遍历的方法：走到当前贪心步骤的边界 end 时，更新为当前记录的 maxPos
 class Solution {
 public:
+  // int jump(std::vector<int>& nums) {
+  //   int size = nums.size();
+  //   int inf = std::numeric_limits<int>::max();
+  //   std::vector<int> minStep(size, inf);
+  //   minStep[0] = 0;
+  //   for (int i = 0; i < size - 1; ++i) {
+  //     int des = i + nums[i];
+  //     for (int j = i + 1; j <= des; ++j) {
+  //       if (j < size)
+  //         minStep[j] = std::min(minStep[j], minStep[i] + 1);
+  //     }
+  //   }
+  //   return minStep[size - 1];
+  // }
+
   int jump(std::vector<int>& nums) {
     int size = nums.size();
-    int inf = std::numeric_limits<int>::max();
-    std::vector<int> minStep(size, inf);
-    minStep[0] = 0;
+    int step = 0, maxPos = 0, end = 0;
     for (int i = 0; i < size - 1; ++i) {
-      int des = i + nums[i];
-      for (int j = i + 1; j <= des; ++j) {
-        if (j < size)
-          minStep[j] = std::min(minStep[j], minStep[i] + 1);
+      maxPos = std::max(maxPos, i + nums[i]);
+      if (i == end) {
+        end = maxPos;
+        ++step;
       }
     }
-    return minStep[size - 1];
+    return step;
   }
 };
 
 
 int main() {
   Solution sol;
-  std::vector<int> nums{2,3,0,1,4};
+  std::vector<int> nums{2,3,1,1,4};
   int ans = sol.jump(nums);
 
   std::cout << ans << std::endl;

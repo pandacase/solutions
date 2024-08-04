@@ -28,4 +28,6 @@ push:
 # clean 目标
 .PHONY: clean
 clean:
-	rm -rf ./Debug/*.out
+	@rm -rf ./Debug/*.out
+	@echo "[+] rm -rf ./Debug/*.out"
+	@echo "[+] Successed"

@@ -50,6 +50,8 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "iomanip": "cpp",
+        "sstream": "cpp"
     }
 }

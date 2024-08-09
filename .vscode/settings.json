@@ -52,6 +52,7 @@
         "iostream": "cpp",
         "istream": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "set": "cpp"
     }
 }

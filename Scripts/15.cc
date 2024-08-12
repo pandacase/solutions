@@ -41,7 +41,9 @@ public:
     int size = nums.size();
     std::vector<std::vector<int>> ans;
     for (int i = 0; i < size; ++i) {
-      
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
       int sum = 0 - nums[i];
 
       int left = i + 1, right = size - 1;
@@ -54,7 +56,11 @@ public:
           ans.push_back({nums[i], nums[left], nums[right]});
           left += 1;
           right -= 1;
-          
+          while (left < size && nums[left] == nums[left - 1]
+              && right >= 0 && nums[right] == nums[right + 1]) {
+            left += 1;
+            right -= 1;
+          }
         };
       }
     }

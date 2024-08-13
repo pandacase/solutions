@@ -8,9 +8,9 @@
 //! 如果不存在符合条件的子数组，返回 0 。
 //! 
 //! @details 
-// 1 <= target <= 10e9
-// 1 <= nums.length <= 10e5
-// 1 <= nums[i] <= 10e5
+//! 1 <= target <= 10e9
+//! 1 <= nums.length <= 10e5
+//! 1 <= nums[i] <= 10e5
 //! 
 //! @example 
 //! input:  target = 7, nums = [2,3,1,2,4,3]
@@ -22,7 +22,7 @@
 //! output: 0
 //! 
 //! @note
-//! 
+//! 其他方法：前缀和 + 二分查找
 class Solution {
 public:
   int minSubArrayLen(int target, std::vector<int>& nums) {

@@ -24,7 +24,7 @@
 //! ⚠️ 如果输入字符串包含 unicode 字符怎么办？
 //! 你能否调整你的解法来应对这种情况？
 //! 💡 对于 c++ 来说需要启用 std::u32string；
-//! ⭐BMP（Basic Multilingual Plane，基本多语言平面）是 Unicode 
+//! ⭐ BMP（Basic Multilingual Plane，基本多语言平面）是 Unicode 
 //! 标准中的第一个平面，范围从 U+0000 到 U+FFFF。
 class Solution {
 public:

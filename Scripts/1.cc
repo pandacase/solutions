@@ -20,32 +20,18 @@
 //! 所以不需要关心两个算子是否相等导致键重复的问题
 class Solution {
 public:
-  std::vector<int> twoSum(std::vector<int>& nums, const int target) {
+  std::vector<int> 
+  twoSum(std::vector<int>& nums, const int target) 
+  {
+    int size = nums.size();
     std::unordered_map<int, int> index;
-    int lastIndex = -1;
-    for (int i = 0; i < nums.size(); ++i) {
-      if (index.count(nums[i]) > 0) {
-        lastIndex = index[nums[i]];
-      }
-      index[nums[i]] = i;
+    for (int i = 0; i < size; ++i) {
+      if (index.count(target - nums[i]))
+        return {index[target - nums[i]], i};
+      else
+        index[nums[i]] = i;
     }
-    
-    int ans_index_0{}, ans_index_1{};
-    for (auto &num : index) {
-      if (index.count(target - num.first) > 0) {
-        if (num.first == (target - num.first) && lastIndex != -1) {
-          ans_index_0 = lastIndex;
-          ans_index_1 = num.second;
-        } else {
-          ans_index_0 = num.second;
-          ans_index_1 = index[target - num.first];
-        }
-      }
-      if (ans_index_0 != ans_index_1) {
-        break;
-      }
-    }
-    return {ans_index_0, ans_index_1};
+    return {-1, -1}; // not found
   }
 };
 

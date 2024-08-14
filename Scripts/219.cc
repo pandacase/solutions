@@ -1,8 +1,6 @@
 #include <unordered_map>
 #include <vector>
 #include <iostream>
-#include <string>
-#include <algorithm>
 
 //! @brief 
 //! 给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个

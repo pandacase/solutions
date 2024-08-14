@@ -7,7 +7,7 @@
 //! ❗若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
 //! 
 //! @details 
-//! 1 <= s.length, t.length <= 5 * 10e4
+//! 1 <= s.length, t.length <= 5 * 10^4
 //! s 和 t 仅包含小写字母
 //! 
 //! @example 

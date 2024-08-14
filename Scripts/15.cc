@@ -11,8 +11,8 @@
 //! 
 //! @details 
 //! n == height.length
-//! 2 <= n <= 10e5
-//! 0 <= height[i] <= 10e4
+//! 2 <= n <= 10^5
+//! 0 <= height[i] <= 10^4
 //! 
 //! @example 
 //! input:  nums = [-1,0,1,2,-1,-4]

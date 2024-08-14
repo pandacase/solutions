@@ -8,9 +8,9 @@
 //! 如果不存在符合条件的子数组，返回 0 。
 //! 
 //! @details 
-//! 1 <= target <= 10e9
-//! 1 <= nums.length <= 10e5
-//! 1 <= nums[i] <= 10e5
+//! 1 <= target <= 10^9
+//! 1 <= nums.length <= 10^5
+//! 1 <= nums[i] <= 10^5
 //! 
 //! @example 
 //! input:  target = 7, nums = [2,3,1,2,4,3]
@@ -28,7 +28,7 @@ public:
   int minSubArrayLen(int target, std::vector<int>& nums) {
     int size = nums.size();
     int left = 0, right = 0;
-    int sum = nums[left], minLength = 10e5 + 1;
+    int sum = nums[left], minLength = 10^5 + 1;
     while (left <= right && right < size) {
       if (sum < target) {
         right += 1;
@@ -40,7 +40,7 @@ public:
         left += 1;
       }
     }
-    return minLength == 10e5 + 1 ? 0 : minLength;
+    return minLength == 10^5 + 1 ? 0 : minLength;
   }
 };
 

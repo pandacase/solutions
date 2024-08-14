@@ -10,8 +10,8 @@
 //! 
 //! @details 
 //! n == height.length
-//! 2 <= n <= 10e5
-//! 0 <= height[i] <= 10e4
+//! 2 <= n <= 10^5
+//! 0 <= height[i] <= 10^4
 //! 
 //! @example 
 //! input:  [1,8,6,2,5,4,8,3,7]

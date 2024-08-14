@@ -1,4 +1,4 @@
-#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -23,46 +23,44 @@
 //! 6^2 + 8^2 = 100
 //! 1^2 + 0^2 + 0^2 = 1
 //! 
-//! input:  strs = [""]
-//! output: [[""]]
-//! 
-//! input:  strs = ["a"]
-//! output: [["a"]]
+//! input:  n = 2
+//! output: false
 //! 
 //! @note
 //!
 class Solution {
 public:
-  std::vector<std::vector<std::string>> 
-  groupAnagrams(std::vector<std::string>& strs) 
-  {
-    std::unordered_map<std::string, int> word2ansIdx;
-    std::vector<std::vector<std::string>> ans;
-
-    for (std::string& str : strs) {
-      std::string key = str;
-      std::sort(key.begin(), key.end());
-
-      if (word2ansIdx.count(key) == 0) {
-        word2ansIdx[key] = ans.size();
-        ans.push_back({str, });
-      } else {
-        ans[word2ansIdx[key]].push_back(str);
-      }
+  bool isHappy(int n) {
+    std::unordered_set<int> numbers;
+    while (true) {
+      n = getSumOfSquares(n);
+      
+      if (n == 1)
+        return true;
+      else if (numbers.count(n))
+        return false;
+      else
+        numbers.insert(n);
     }
+  }
 
-    return ans;
+  int getSumOfSquares(int num) {
+    int res = 0;
+    while (num > 0) {
+      int digit = num % 10;
+      res += digit * digit;
+      num /= 10;
+    }
+    return res;
   }
 };
 
 int main() {
   Solution sol;
-  std::vector<std::string> strs{
-    "eat", "tea", "tan", "ate", "nat", "bat"};
-  auto ans = sol.groupAnagrams(strs);
+  auto ans = sol.isHappy(2);
 
   //! 0  
-  // std::cout << ans << std::endl;
+  std::cout << ans << std::endl;
 
   //! 1
   // for (auto & a : ans)
@@ -70,9 +68,9 @@ int main() {
   // std::cout << std::endl;
 
   //! 2
-  for (auto & vec : ans) {
-    for (auto & a : vec) 
-      std::cout << a << " ";
-    std::cout << std::endl;
-  }
+  // for (auto & vec : ans) {
+  //   for (auto & a : vec) 
+  //     std::cout << a << " ";
+  //   std::cout << std::endl;
+  // }
 }

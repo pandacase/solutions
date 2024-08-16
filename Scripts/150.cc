@@ -80,16 +80,4 @@ int main() {
 
   //! 0  
   std::cout << ans << std::endl;
-
-  //! 1
-  // for (auto & a : ans)
-  //   std::cout << a << " ";
-  // std::cout << std::endl;
-
-  //! 2
-  // for (auto & vec : ans) {
-  //   for (auto & a : vec) 
-  //     std::cout << a << " ";
-  //   std::cout << std::endl;
-  // }
 }

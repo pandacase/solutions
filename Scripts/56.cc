@@ -26,32 +26,32 @@
 //! 
 class Solution {
 public:
-    std::vector<std::vector<int>> 
-    merge(std::vector<std::vector<int>>& intervals) 
-    {
-      int numOfInterval = intervals.size();
-      std::sort(intervals.begin(), 
-                intervals.end(), 
-                [](const std::vector<int>& a, 
-                   const std::vector<int>& b) {
-                  return a[0] < b[0];
-                });
+  std::vector<std::vector<int>> 
+  merge(std::vector<std::vector<int>>& intervals) 
+  {
+    int numOfInterval = intervals.size();
+    std::sort(intervals.begin(), 
+              intervals.end(), 
+              [](const std::vector<int>& a, 
+                  const std::vector<int>& b) {
+                return a[0] < b[0];
+              });
 
-      std::vector<std::vector<int>> ans;
-      int begin, end;
-      for (int i = 0; i < numOfInterval; ++i) {
-        if (i > 0 && intervals[i][0] <= end) {
-          end = std::max(end, intervals[i][1]);
-          ans.back()[1] = end;
-        } else {
-          begin = intervals[i][0];
-          end = intervals[i][1];
-          ans.push_back({begin, end});
-        }
+    std::vector<std::vector<int>> ans;
+    int begin, end;
+    for (int i = 0; i < numOfInterval; ++i) {
+      if (i > 0 && intervals[i][0] <= end) {
+        end = std::max(end, intervals[i][1]);
+        ans.back()[1] = end;
+      } else {
+        begin = intervals[i][0];
+        end = intervals[i][1];
+        ans.push_back({begin, end});
       }
-
-      return ans;
     }
+
+    return ans;
+  }
 };
 
 

@@ -4,10 +4,10 @@
 #include <unordered_map>
 
 struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+  int val;
+  ListNode *next;
+  ListNode(int x) : val(x), next(NULL) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
 //! @brief 
@@ -114,7 +114,7 @@ int main() {
   auto head = sol.addTwoNumbers(l1, l2);
 
   // print link
-  for (auto p = head; head != NULL; head = head->next) {
+  for (auto p = head; p != NULL; p = p->next) {
     std::cout << p->val << " ";
   }
   std::cout << std::endl;

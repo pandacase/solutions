@@ -47,13 +47,14 @@ public:
     int carry = 0;
 
     while (l1 != nullptr || l2 != nullptr || carry != 0) {
+      // proxy val
       int val1 = (l1 != nullptr) ? l1->val : 0;
       int val2 = (l2 != nullptr) ? l2->val : 0;
-
+      // compute
       auto [res, newCarry] = oneBitAdder(val1, val2, carry);
       curr->next = new ListNode(res);
       carry = newCarry;
-
+      // update iterator
       curr = curr->next;
       if (l1 != nullptr) l1 = l1->next;
       if (l2 != nullptr) l2 = l2->next;

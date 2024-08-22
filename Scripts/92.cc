@@ -114,11 +114,11 @@ public:
 int main() {
   Solution sol;
 
-  ListNode* l1 = new ListNode(
-                  1, new ListNode(
-                    2, new ListNode(
-                      3, new ListNode(
-                        4, new ListNode(5)))));
+  // ListNode* l1 = new ListNode(
+  //                 1, new ListNode(
+  //                   2, new ListNode(
+  //                     3, new ListNode(
+  //                       4, new ListNode(5)))));
   ListNode* l2 = new ListNode(5);
 
   auto head = sol.reverseBetween2(l2, 1, 1);

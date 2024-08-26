@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-#define MAX_INT 10e5 + 1
+#define MAX_INT 1e5 + 1
 
 struct TreeNode {
   int val;

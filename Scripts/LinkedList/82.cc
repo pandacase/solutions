@@ -26,8 +26,7 @@ struct ListNode {
 //! 注意，只要出现重复了是全都删掉该值的结点，一个不留
 //!
 //! @note
-//! while 的条件也可以是 &&，最后直接将 curr->next 
-//! 指向未遍历完的链表的当前位置即可续上了
+//! 
 class Solution {
 public:
   ListNode* 

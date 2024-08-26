@@ -68,8 +68,6 @@ public:
   }
 };
 
-static int a = 1;
-
 int main() {
   Solution sol;
   auto root =     new TreeNode(5, 

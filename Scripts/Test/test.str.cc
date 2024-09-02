@@ -1,6 +1,13 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <utility>
+
+template<typename T>
+constexpr typename std::remove_reference<T>::type&& move(T&& arg) noexcept {
+  return static_cast<typename std::remove_reference<T>::type&&>(arg);
+}
+
 
 class MyString {
 private:
@@ -95,11 +102,11 @@ main()
   str3 = str2;
   str3.print();
 
-  MyString str4 = std::move(str1);
+  MyString str4 = move(str1);
   str4.print();
   str1.print();
 
-  str3 = std::move(str4);
+  str3 = move(str4);
   str3.print();
   str4.print();
 

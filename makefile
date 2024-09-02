@@ -20,8 +20,8 @@ all: $(OUTPUTS)
 	if [ -f "$$file" ]; then \
 		outfile="Debug/$*.out"; \
 		mkdir -p $$(dirname $$outfile); \
-		g++ $$file -o $$outfile; \
-		echo "[+] g++ $$file -o $$outfile"; \
+		g++ -std=c++20 $$file -o $$outfile; \
+		echo "[+] g++ -std=c++20 $$file -o $$outfile"; \
 		echo "[+] Running $$outfile"; \
 		./$$outfile; \
 	else \

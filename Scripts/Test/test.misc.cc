@@ -1,13 +1,16 @@
 
 #include <bits/stdc++.h>
 
+// 3 ////////////////////////////////////////////////////////////////////////
 template <typename T>
 concept Number = std::is_integral_v<T> || std::is_floating_point_v<T>;
 
 template <Number T>
 T add(T a, T b) { return a + b; };
+// 3 end ////////////////////////////////////////////////////////////////////
 
 
+// 4 ////////////////////////////////////////////////////////////////////////
 class Base {
 public:
     virtual void show() {
@@ -21,6 +24,7 @@ public:
         std::cout << "Derived class show" << std::endl;
     }
 };
+// 4 end ////////////////////////////////////////////////////////////////////
 
 
 int 
@@ -39,7 +43,11 @@ main()
   //   return a.size() < b.size();
   // });
 
-  //! virtual func test
+  //! 3. concept test
+  std::cout << add(1, 2) << std::endl;
+  std::cout << add(1.1, 2.2) << std::endl;
+
+  //! 4. virtual func test with GDB
   Base* b = new Derived();
   b->show();  // 输出: Derived class show
   delete b;

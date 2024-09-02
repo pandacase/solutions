@@ -4,8 +4,8 @@
 #include <utility>
 
 template<typename T>
-constexpr std::remove_reference<T>::type&& move(T&& arg) noexcept {
-  return static_cast<std::remove_reference<T>::type&&>(arg);
+constexpr typename std::remove_reference<T>::type&& move(T&& arg) noexcept {
+  return static_cast<typename std::remove_reference<T>::type&&>(arg);
 }
 
 

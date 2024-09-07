@@ -74,15 +74,6 @@ public:
 };
 
 
-struct control_block {
-  size_t _ref_cnt;
-  size_t _weak_ref_cnt;
-
-  control_block() : _ref_cnt(1), _weak_ref_cnt(0) { }
-};
-
-
-
 //! @brief my shared ptr //////////////////////////////////////////
 //! 
 template<typename T>

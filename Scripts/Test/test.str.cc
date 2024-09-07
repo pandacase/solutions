@@ -3,6 +3,9 @@
 #include <string>
 #include <utility>
 
+namespace my 
+{
+
 template<typename T>
 constexpr typename std::remove_reference<T>::type&& 
 move(T&& arg) noexcept 
@@ -11,104 +14,105 @@ move(T&& arg) noexcept
 }
 
 
-class MyString {
+class string {
 private:
-  char* data;
-  size_t size;
+  char* _data;
+  size_t _size;
 
 public:
   //! @brief Construct a new My String object
   //! 
-  MyString() : data{new char[1]{'\0'}}, size{0} {}
+  string() : _data{new char[1]{'\0'}}, _size{0} {}
 
   //! @brief Construct a new My String object from `const char*`
   //! 
-  MyString(const char* str) {
+  string(const char* str) {
     if (str) {
-      size = std::strlen(str);
-      data = new char[size + 1];
-      std::strcpy(data, str);
+      _size = std::strlen(str);
+      _data = new char[_size + 1];
+      std::strcpy(_data, str);
     } else {
-      MyString();
+      string();
     }
   }
 
   //! @brief Construct a new My String object from copy
   //! 
-  MyString(const MyString& other) {
-    size = other.size;
-    data = new char[size + 1];
-    std::strcpy(data, other.data);
+  string(const string& other) {
+    _size = other._size;
+    _data = new char[_size + 1];
+    std::strcpy(_data, other._data);
   }
 
   //! @brief Construct a new My String object from move
   //! 
-  MyString(MyString&& other) noexcept 
-    : data(other.data), size(other.size) {
-    other.data = nullptr;
-    other.size = 0;
+  string(string&& other) noexcept 
+    : _data(other._data), _size(other._size) {
+    other._data = nullptr;
+    other._size = 0;
   }
 
   //! @brief Copy assignment operator
   //! 
-  MyString& operator=(const MyString& other) {
+  string& operator=(const string& other) {
     if (this == &other) return *this;
 
-    delete[] data;
+    delete[] _data;
 
-    size = other.size;
-    data = new char[size + 1];
-    std::strcpy(data, other.data);
+    _size = other._size;
+    _data = new char[_size + 1];
+    std::strcpy(_data, other._data);
   
     return *this;
   }
 
   //! @brief Move assignment operpator
   //! 
-  MyString& operator=(MyString&& other) noexcept {
+  string& operator=(string&& other) noexcept {
     if (this == &other) return *this;
 
-    delete[] data;
+    delete[] _data;
 
-    size = other.size;
-    data = other.data;
+    _size = other._size;
+    _data = other._data;
 
-    other.size = 0;
-    other.data = nullptr;
+    other._size = 0;
+    other._data = nullptr;
 
     return *this;
   }
 
   // Destructor
-  ~MyString() {
-    delete[] data;
+  ~string() {
+    delete[] _data;
   }
 
   void print() const {
-    if (size)
-      std::cout << data << std::endl;
+    if (_size)
+      std::cout << _data << std::endl;
     else
       std::cerr << "[!] No string." << std::endl;
   }
 
 };
 
+} // namespace my
 
 int 
 main()
 {
-  MyString str1("hello, world");
-  MyString str2 = str1;
-  MyString str3("Temporary");
+  my::string str1("hello, world");
+  my::string str2 = str1;
+  my::string str3("Temporary");
 
   str3 = str2;
   str3.print();
 
-  MyString str4 = move(str1);
+  my::string str4 = my::move(str1);
   str4.print();
   str1.print();
 
-  str3 = move(str4);
+  str3 = my::move(str4);
   str3.print();
   str4.print();
 

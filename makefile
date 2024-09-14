@@ -16,7 +16,7 @@ all: $(OUTPUTS)
 
 # 编译特定编号的文件
 %:
-	@file=$(shell find Scripts -name "$*.cc"); \
+	@file=$(shell find . -name "$*.cc"); \
 	if [ -f "$$file" ]; then \
 		outfile="Debug/$*.out"; \
 		mkdir -p $$(dirname $$outfile); \

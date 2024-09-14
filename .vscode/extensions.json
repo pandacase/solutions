@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "vscode.cpptools",
+    "vscode.cpptools-extension-pack",
+    "vscode.cpptools-themes",
+    "vscode.makefile-tools",
+  
+    // "grapecity.gc-excelviewer"
+  ],
+  "unwantedRecommendations": [
+    
+  ]
+}

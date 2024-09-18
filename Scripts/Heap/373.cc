@@ -50,7 +50,7 @@ public:
       minHeap.emplace(i, 0);
     }
 
-    while (k--) {
+    while (k-- && !minHeap.empty()) {
       auto [x, y] = minHeap.top();
       minHeap.pop();
       ans.emplace_back(std::initializer_list<int>{nums1[x], nums2[y]});

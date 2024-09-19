@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class Solution {
+class Sort {
 public:
   void insertionSort(std::vector<int>& vec) {
     int n = vec.size();
@@ -82,7 +82,7 @@ private:
 };
 
 int main() {
-  Solution sol;
+  Sort sol;
   std::vector<int> arr = {10, 7, 8, 9, 1, 5, 4, 11, 3};
   sol.mergeSort(arr);
   for (int x : arr)

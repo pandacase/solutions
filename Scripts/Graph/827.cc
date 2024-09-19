@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <unordered_set>
+#include <array>
 
 //! @brief 
 //! 给你一个大小为 n x n 二进制矩阵 grid 。最多 只能将一格 0 变成 1 。
@@ -21,6 +22,16 @@
 //! 
 //! @note
 //! 目前这个版本是 TLE，测例通过 72/75，等待解决中...
+//!
+//! 优化：
+//! 1. 在生成新的方向时 reserve(4)
+//! 2. 返回新的方向 vec 时使用 sdt::move()
+//! 3. countNewArea 中 areas 改为传引用（这个至关重要，前面疏忽了）
+//! 4. 将四个方向的数组改成 array
+//! 5. 多次对 grid[new_i][new_j] 的访问改为先存到本地 idx 变量之后访问 idx
+//!    (这本质上是 cache locality 的优化)
+//! 
+//! 不过时间消耗还是偏多了，等待重构中....
 //!
 class Solution {
 public:
@@ -76,13 +87,14 @@ private:
   generateDirs(std::vector<std::vector<int>>& grid, size_t i, size_t j) 
   {
     std::vector<std::pair<int, int>> new_dirs;
+    new_dirs.reserve(_dirs_num);
     for (auto& dir : _dirs) {
       size_t new_i = i + dir[0], new_j = j + dir[1];
       if (this->isValid(grid, new_i, new_j)) {
         new_dirs.emplace_back(new_i, new_j);
       }
     }
-    return new_dirs;
+    return std::move(new_dirs);
   }
 
 private:
@@ -122,15 +134,16 @@ private:
   countNewArea(
     std::vector<std::vector<int>>& grid,
     size_t i, size_t j,
-    std::vector<size_t> areas
+    std::vector<size_t>& areas
   ) {
     size_t new_area = 1;
     std::unordered_set<size_t> counted;
     auto new_dirs = generateDirs(grid, i, j);
     for (auto& [new_i, new_j] : new_dirs) {
-      if (!counted.count(grid[new_i][new_j])) {
-        new_area += areas[grid[new_i][new_j]];
-        counted.insert(grid[new_i][new_j]);
+      int idx = grid[new_i][new_j];
+      if (!counted.count(idx)) {
+        new_area += areas[idx];
+        counted.insert(idx);
       }
     }
     return new_area;
@@ -138,12 +151,12 @@ private:
 
 private:
   const size_t _dirs_num = 4;
-  std::vector<std::vector<int>> _dirs{
+  std::array<std::array<int, 2>, 4> _dirs{{
     {1, 0},   // to down
     {-1, 0},  // to up
     {0, 1},   // to right
     {0, -1}   // to left
-  };
+  }};
 };
 
 

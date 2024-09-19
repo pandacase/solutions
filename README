@@ -1,0 +1,38 @@
+
+## Makefile
+
+1. Compile and Run
+
+```sh
+# run 24.cc
+make 24
+
+# run sort.cc
+make sort
+```
+
+> ❗ main function required
+
+
+2. Clean Debug/*.out
+
+```sh
+make clean
+```
+
+3. Quickly Push a Solution 
+
+```sh
+make push m="complete problem xxx"
+```
+
+## Dir
+
+1. Check the `.vscode/` for vscode debug info.
+
+2. U can put the tempary source file in `Debug/` and run it, and all the `.out` files are here.
+
+3. The functional implementations are in `Impls/`.
+
+4. Solutions to the problems from leetcode are in `Scripts/`.
+

@@ -18,46 +18,98 @@
 //! 
 //! @note
 //! 方法一：使用堆的时间复杂度是 O(nlogn)
-//! 方法而：基于快速排序的选择方法，时间复杂度是 O(n)
+//! 方法二：基于快速排序的选择方法，时间复杂度是 O(n)
 //! 
 class Solution {
 public:
-  int findKthLargest(std::vector<int>& nums, int k) {
-    std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
+  // int findKthLargest(std::vector<int>& nums, int k) {
+  //   std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
     
-    int n = nums.size();
-    for (int i = 0; i < n; ++i) {
-      if (minHeap.size() < k) {
-        minHeap.push(nums[i]);
-      } else if (nums[i] > minHeap.top()) {
-        minHeap.pop();
-        minHeap.push(nums[i]);
-      }
-    }
+  //   int n = nums.size();
+  //   for (int i = 0; i < n; ++i) {
+  //     if (minHeap.size() < k) {
+  //       minHeap.push(nums[i]);
+  //     } else if (nums[i] > minHeap.top()) {
+  //       minHeap.pop();
+  //       minHeap.push(nums[i]);
+  //     }
+  //   }
 
-    return minHeap.top();
+  //   return minHeap.top();
+  // }
+
+  int findKthLargest(std::vector<int>& nums, int k) {
+    return findKthLargest(nums, k, 0, nums.size() - 1);
   }
 
-  int findKthLargest_2(std::vector<int>& nums, int k) {
+private:
+  int findKthLargest(std::vector<int>& nums, int k, int low, int high) {
+    if (low == high)
+      return low;
+
+    int mid = this->partition(nums, low, high);
     
+    if (k < mid + 1) {
+      return findKthLargest(nums, k, low, mid - 1);
+    } else if (k > mid + 1) {
+      return findKthLargest(nums, k, mid + 1, high);
+    } else {
+      return nums[mid];
+    }
+  }
+
+  int partition(std::vector<int>& nums, int low, int high) {
+    int pivot = nums[high];
+    int i = low;
+    for (int j = low; j < high; ++j) {
+      if (nums[j] > pivot) {
+        std::swap(nums[i], nums[j]);
+        ++i;
+      }
+    }
+    std::swap(nums[i], nums[high]);
+    return i;
+  }
+};
+
+//! @note Solution1 来自官方题解
+//! 上面的常规 quick sort 写法的递归栈是线性增长。
+//! 即在 100 个相等元素且 k = 50 时，栈堆叠了高达 50 个 frame
+//! 而 Solution1 在这种情况下的递归栈是 logn 增长的，只有约 6 个 frame
+//! 具体来说是 Lomuto 分区算法 与 Hoare 分区算法 的区别，
+//! 后者专门由于优化大量元素相等时的递归栈深度退化问题。
+//! 
+class Solution1 {
+public:
+  int quickselect(std::vector<int> &nums, int l, int r, int k) {
+    if (l == r)
+      return nums[k];
+    int partition = nums[l], i = l - 1, j = r + 1;
+    while (i < j) {
+      do i++; while (nums[i] < partition);
+      do j--; while (nums[j] > partition);
+      if (i < j)
+        std::swap(nums[i], nums[j]);
+    }
+    if (k <= j)return quickselect(nums, l, j, k);
+    else return quickselect(nums, j + 1, r, k);
+  }
+
+  int findKthLargest(std::vector<int> &nums, int k) {
+    int n = nums.size();
+    return quickselect(nums, 0, n - 1, n - k);
   }
 };
 
 
+
 int main() {
-
-  //! 0  
-  // std::cout << ans << std::endl;
-
-  //! 1
-  // for (auto & a : ans)
-  //   std::cout << a << " ";
-  // std::cout << std::endl;
-
-  //! 2
-  // for (auto & vec : ans) {
-  //   for (auto & a : vec) 
-  //     std::cout << a << " ";
-  //   std::cout << std::endl;
-  // }
+  Solution  sol;
+  std::vector<int> vec{1,2,3,4,5};
+  for (int i = 0; i < 95; ++i)
+    vec.push_back(1);
+  
+  std::cout << sol.findKthLargest(vec, 50) << std::endl;
+  return 0;
 }
+

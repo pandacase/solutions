@@ -22,8 +22,4 @@ int main() {
     angle_diff.push(180.0);
   }
 
-  double d = 1 / (2 * m) 
-           + 1 / (2 * m) 
-           - (180 - angle_diff.top()) / (360 * m * m );
-
 }

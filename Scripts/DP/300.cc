@@ -10,8 +10,8 @@
 //! 的子序列。
 //! 
 //! @details 
-//! 1 <= nums.length <= 100
-//! 0 <= nums[i] <= 400
+//! 1 <= nums.length <= 2500
+//! -104 <= nums[i] <= 104
 //! 
 //! @example
 //! inputs: nums = [10,9,2,5,3,7,101,18]

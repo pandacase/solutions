@@ -54,8 +54,8 @@ private:
         high = mid - 1;
     }
 
-    if (low - 1 >= 0 && vec[low - 1] == value)
-      return low - 1;
+    if (high >= 0 && vec[high] == value)
+      return high;
     else
       return -1;
   }

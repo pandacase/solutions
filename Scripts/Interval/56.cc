@@ -29,27 +29,21 @@ public:
   std::vector<std::vector<int>> 
   merge(std::vector<std::vector<int>>& intervals) 
   {
-    int numOfInterval = intervals.size();
-    std::sort(intervals.begin(), 
-              intervals.end(), 
-              [](const std::vector<int>& a, 
-                  const std::vector<int>& b) {
+    size_t n = intervals.size();
+    std::sort(intervals.begin(), intervals.end(), 
+              [](const std::vector<int>& a, std::vector<int>& b) {
                 return a[0] < b[0];
               });
 
-    std::vector<std::vector<int>> ans;
+    std::vector<std::vector<int>>  ans;
     int begin, end;
-    for (int i = 0; i < numOfInterval; ++i) {
-      if (i > 0 && intervals[i][0] <= end) {
-        end = std::max(end, intervals[i][1]);
-        ans.back()[1] = end;
+    for (int i = 0; i < n; ++i) {
+      if (i >= 1 && intervals[i][0] <= ans.back()[1]) {
+        ans.back()[1] = std::max(ans.back()[1], intervals[i][1]);
       } else {
-        begin = intervals[i][0];
-        end = intervals[i][1];
-        ans.push_back({begin, end});
+        ans.push_back({intervals[i][0], intervals[i][1]});
       }
     }
-
     return ans;
   }
 };

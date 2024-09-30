@@ -4,6 +4,7 @@
     "vscode.cpptools-extension-pack",
     "vscode.cpptools-themes",
     "vscode.makefile-tools",
+    "gruntfuggly.todo-tree" // a nice extension!
   
     // "grapecity.gc-excelviewer"
   ],

@@ -5,6 +5,20 @@
 - some algo implementation.
 - some infrastructure implementation.
 
+## Dir
+
+For details, see the independent README.md in each directory.
+
+- `.vscode/`: vscode debug info + recomendation for extesnions.
+
+- `Debug/`: Tempary file.
+
+- `Impls/`: Functional implementations.
+
+- `Scripts/`: Solutions to the problems from leetcode.
+
+- `Exs/`: Exercises from interviews.
+
 ## Makefile
 
 1. Compile and Run
@@ -31,17 +45,6 @@ make clean
 ```sh
 make push m="complete problem xxx"
 ```
-
-## Dir
-
-1. Check the `.vscode/` for vscode debug info.
-   - Please check the `extensions.json` for best experience.
-
-2. You can put the tempary source file in `Debug/` and run it, and all the `.out` files are here.
-
-3. The functional implementations are in `Impls/`.
-
-4. Solutions to the problems from leetcode are in `Scripts/`.
 
 ## About problems' description
 

@@ -87,6 +87,11 @@
         "typeindex": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "netdb.h": "c",
+        "socket.h": "c",
+        "types.h": "c",
+        "inet.h": "c",
+        "in.h": "c"
     }
 }

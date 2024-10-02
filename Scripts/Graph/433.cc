@@ -37,7 +37,6 @@
 //! output: 3
 //! 解释: "AAAAACCC" --> "AAAACCCC" --> "AAACCCCC" --> "AACCCCCC" 
 //!       共需要三次变化。
-
 //! 
 //! @note 
 //! 

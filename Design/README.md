@@ -72,6 +72,17 @@
 > 应用案例
 
 - nginx 处理 http 请求
+  ```cpp
+  // 处理方法的一维数组
+  ph = cmcf->phase_engine.handlers;
+  while (ph[r->phase_handler].checker) {
+    // 阶段执行与跳跃
+    rc = ph[r->phase_handler].checker(r, &ph[r->phase_handler]);
+    // 打断责任链
+    if (rc == NGX_OK)
+      return;
+  }
+  ```
 
 ### 3. 组合模式
 

@@ -33,30 +33,29 @@ public:
   std::vector<std::vector<int>> 
   combine(int n, int k) 
   {
+    std::vector<int> curr_ans;
     std::vector<std::vector<int>> ans;
-    std::vector<int> curr_combine;
-    combine(n, k, 1, curr_combine, ans);
+    combine(n, k, 1, curr_ans, ans);
     return ans;
   }
 
 private:
   void
   combine(
-    int n, 
+    int n,
     int k,
-    size_t curr_idx, 
-    std::vector<int>& curr_combine,
-    std::vector<std::vector<int>>& ans)
-  {
-    if (curr_combine.size() == size_t(k)) {
-      ans.push_back(curr_combine);
+    int curr,
+    std::vector<int> curr_ans,
+    std::vector<std::vector<int>>& ans
+  ) {
+    if (curr_ans.size() == size_t(k)) {
+      ans.push_back(curr_ans);
       return;
     }
-
-    for (int i = curr_idx; i <= n; ++i) {
-      curr_combine.push_back(i);
-      combine(n, k, i + 1, curr_combine, ans);
-      curr_combine.pop_back();
+    for (int i = curr; i <= n; ++i) {
+      curr_ans.push_back(i);
+      combine(n, k, i + 1, curr_ans, ans);
+      curr_ans.pop_back();
     }
   }
 };

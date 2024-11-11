@@ -23,7 +23,16 @@
 //! input: nums = [1]
 //! output: [[1]]
 //! 
-//! @note
+//! @note 
+//! 1. 组合题（./77.cc)
+//! 终止条件：k == curr_ans.size()
+//! 递归下标：idx = i + 1 (确保不会重复)
+//! 迭代步骤：从空数组开始构建，每一次递归是 push/pop
+//! 
+//! 2. 排列题 (./46.cc)
+//! 终止条件：idx == curr_ans.size()
+//! 递归下标：idx = idx + 1 (与终止条件相关，可以推导出更完整的树)
+//! 迭代步骤：在初始的数组上进行 swap，每一次递归是 swap/restore
 //! 
 class Solution {
 public:

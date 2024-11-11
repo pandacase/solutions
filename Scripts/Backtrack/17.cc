@@ -28,36 +28,35 @@ public:
   letterCombinations(std::string digits) 
   {
     size_t n = digits.size();
-    if (!n) return {};
+    if (!n) return { };
+    std::string curr_ans;
     std::vector<std::string> ans;
-    std::string str{};
-    letterCombinations(digits, 0, str, ans);
+    letterCombinations(digits, 0, curr_ans, ans);
     return ans;
   }
 
 private:
   void
   letterCombinations(
-    std::string& digits, 
-    size_t curr_idx, 
-    std::string& curr_str, 
-    std::vector<std::string>& ans)
-  {
+    std::string& digits,
+    std::size_t curr_idx,
+    std::string& curr_ans,
+    std::vector<std::string>& ans
+  ) {
     if (curr_idx == digits.size()) {
-      ans.push_back(curr_str);
+      ans.push_back(curr_ans);
       return;
     }
-    size_t curr_key = digits[curr_idx] - '0' - 2;
-    auto& curr_space = digit2char[curr_key];
-    for (auto& ch : curr_space) {
-      curr_str.push_back(ch);
-      letterCombinations(
-        digits, curr_idx + 1, curr_str, ans);
-      curr_str.pop_back();
+    size_t key = digits[curr_idx] - '0' - offset;
+    for (auto ch : digit2char[key]) {
+      curr_ans.push_back(ch);
+      letterCombinations(digits, curr_idx + 1, curr_ans, ans);
+      curr_ans.pop_back();
     }
   }
 
 private:
+  const size_t offset = 2;
   std::vector<std::vector<char>> digit2char {
     {'a', 'b', 'c'}, // idx 0 : digit 2 
     {'d', 'e', 'f'}, 

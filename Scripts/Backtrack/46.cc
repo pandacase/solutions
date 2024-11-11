@@ -5,57 +5,54 @@
 #include <string>
 
 //! @brief 
-//! 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
-//! 
-//! 你可以按任何顺序返回答案。
+//! 给定一个不含重复数字的数组 nums，返回其所有可能的全排列。
+//! 你可以按任意顺序返回答案。
 //! 
 //! @details 
-//! 1 <= n <= 20
-//! 1 <= k <= n
+//! 1 <= nums.length <= 6
+//! -10 <= nums[i] <= 10
+//! nums 中的所有整数互不相同。
 //! 
 //! @example 
-//! input: n = 4, k = 2
-//! output: 
-//! [
-//!   [2,4],
-//!   [3,4],
-//!   [2,3],
-//!   [1,2],
-//!   [1,3],
-//!   [1,4]
-//! ]
+//! input: nums = [1,2,3]
+//! output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 //! 
-//! input: n = 1, k = 1
+//! input: nums = [0,1]
+//! output: [[0,1],[1,0]]
+//! 
+//! input: nums = [1]
 //! output: [[1]]
+//! 
+//! @note
 //! 
 class Solution {
 public:
   std::vector<std::vector<int>> 
   permute(std::vector<int>& nums) 
   {
+    if (nums.empty()) return {};
     std::vector<std::vector<int>> ans;
-    std::vector<int> curr_ans;
-    traverse(nums, ans, 0);
+    traverse(0, nums, ans);
     return ans;
   }
 
 private:
   void
   traverse(
-    std::vector<int>& nums,
-    std::vector<std::vector<int>>& ans,
-    size_t idx
+    size_t idx,
+    std::vector<int>& curr_ans,
+    std::vector<std::vector<int>>& ans
   ) {
-    if (idx == nums.size()) {
-      ans.push_back(nums);
+    if (idx == curr_ans.size()) {
+      ans.push_back(curr_ans);
       return;
     }
-    size_t n = nums.size();
 
+    size_t n = curr_ans.size();
     for (size_t i = idx; i < n; ++i) {
-      std::swap(nums[i], nums[idx]);
-      traverse(nums, ans, idx + 1);
-      std::swap(nums[i], nums[idx]);
+      std::swap(curr_ans[idx], curr_ans[i]);
+      traverse(idx + 1, curr_ans, ans);
+      std::swap(curr_ans[idx], curr_ans[i]);
     }
   }
 };

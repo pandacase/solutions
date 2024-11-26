@@ -28,7 +28,7 @@ public:
   int minSubArrayLen(int target, std::vector<int>& nums) {
     int size = nums.size();
     int left = 0, right = 0;
-    int sum = nums[left], minLength = 10^5 + 1;
+    int sum = nums[left], minLength = 10e5 + 1;
     while (left <= right && right < size) {
       if (sum < target) {
         right += 1;
@@ -40,7 +40,7 @@ public:
         left += 1;
       }
     }
-    return minLength == 10^5 + 1 ? 0 : minLength;
+    return minLength == 10e5 + 1 ? 0 : minLength;
   }
 };
 
